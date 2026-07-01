@@ -43,7 +43,7 @@ class myTransformer(nn.Module):
         head_emb = self.subject_embedding(head_word_list)
         rel_emb = self.rel_embedding(relation_word_list)
         tail_emb = self.object_embedding(tail_word_list)
-        triple_emb = head_emb + rel_emb + tail_emb
+        triple_emb = head_emb + rel_emb - tail_emb
         knowledge_emb = torch.mean(triple_emb,dim=2)
 
         knowledge_emb = torch.mean(self.transformer(knowledge_emb), dim=1)
